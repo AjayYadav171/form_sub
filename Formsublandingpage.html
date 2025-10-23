@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact &amp; Signup — Let It Rip</title>
+  <style>
+    :root{
+      --glass: rgba(255,255,255,0.08);
+      --glass-2: rgba(255,255,255,0.12);
+      --accent: #ff6b6b;
+      --text: #f7f7f7;
+      --muted: rgba(247,247,247,0.8);
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      color:var(--text);
+      min-height:100vh;
+      background-image: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=1950&q=80');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+    }
+
+    .container{
+      width:100%;
+      max-width:1100px;
+      display:grid;
+      grid-template-columns: 1fr 460px;
+      gap:30px;
+      align-items:center;
+    }
+
+    .left{
+      padding:40px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      backdrop-filter: blur(6px) saturate(120%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    }
+    .left h1{margin:0 0 12px;font-size:32px}
+    .left p{margin:0 0 20px;color:var(--muted);line-height:1.5}
+
+    .features{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .feat{background:var(--glass);padding:12px;border-radius:12px;min-width:160px}
+    .feat h4{margin:0 0 6px;font-size:14px}
+    .feat p{margin:0;color:var(--muted);font-size:13px}
+
+    .right{
+      padding:28px;
+      border-radius:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+      position:relative;
+    }
+
+    form{
+      display:flex;flex-direction:column;gap:12px;
+    }
+    label{font-size:13px;color:var(--muted)}
+    input[type=text], input[type=email], textarea, select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      color:var(--text);
+      outline:none;
+      font-size:14px;
+    }
+    textarea{min-height:100px;resize:vertical}
+    .row{display:flex;gap:12px}
+    .btn{
+      display:inline-block;padding:12px 16px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent),#ff8e72);color:white;font-weight:600;cursor:pointer}
+
+    .thankyou{
+      display:none;
+      text-align:center;
+      padding:24px;
+    }
+    .thankyou.show{display:block}
+    .confetti{font-size:28px;margin-top:8px}
+
+    /* mobile */
+    @media (max-width:900px){
+      .container{grid-template-columns:1fr;}
+      .right{order:-1}
+    }
+
+    /* little animation */
+    .pulse{animation:pulse 1.8s ease-in-out infinite}
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+    footer{position:absolute;left:20px;right:20px;bottom:-60px;text-align:center;color:rgba(255,255,255,0.6);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h1>Join the Community — Let’s Stay in Touch</h1>
+      <p>Fill the form to get updates, invites to local meetups, and tips on improving your Beyblade combos and launch technique. No spam — just good vibes. 🌟</p>
+
+      <div class="features">
+        <div class="feat">
+          <h4>Quick Events</h4>
+          <p>Local workshops & friendly tournaments.</p>
+        </div>
+        <div class="feat">
+          <h4>Exclusive Tips</h4>
+          <p>Build better combos and master your launch.</p>
+        </div>
+        <div class="feat">
+          <h4>Member Perks</h4>
+          <p>Early access to limited releases and gear.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="right pulse">
+      <div id="formCard">
+        <h3 style="margin:0 0 6px;">Sign Up</h3>
+        <p style="margin:0 0 14px;color:var(--muted);font-size:13px">We only use your info to send event updates and community news.</p>
+
+        <form id="contactForm">
+          <div class="row">
+            <div style="flex:1">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div style="width:140px">
+              <label for="age">Age</label>
+              <input id="age" name="age" type="text" placeholder="e.g. 12" />
+            </div>
+          </div>
+
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div>
+            <label for="interest">I am interested in</label>
+            <select id="interest" name="interest">
+              <option>Casual battles</option>
+              <option>Tournaments</option>
+              <option>Building & Mods</option>
+              <option>Learning launch technique</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message">Message (optional)</label>
+            <textarea id="message" name="message" placeholder="Tell us something about your play-style or where you're from."></textarea>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+            <input id="consent" type="checkbox" checked />
+            <label for="consent" style="margin:0;font-size:13px;color:var(--muted)">I agree to receive emails about events.</label>
+          </div>
+
+          <div style="margin-top:8px;display:flex;gap:10px;align-items:center">
+            <button class="btn" type="submit">Submit</button>
+            <button type="button" id="demoBtn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:var(--muted);cursor:pointer">Demo Fill</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="thankCard" class="thankyou" aria-hidden="true">
+        <h2 id="tyTitle">Thanks — You’re In!</h2>
+        <p id="tySub" style="color:var(--muted);">We’ll send a confirmation to the email you provided. See you at the next battle!</p>
+        <div class="confetti">🎉 🎊 ✨</div>
+        <div style="margin-top:12px">
+          <button id="newSub" class="btn" style="background:linear-gradient(90deg,#6bdbff,#6bb2ff);">Add Another</button>
+        </div>
+      </div>
+
+      <footer>Background image: Unsplash. This is a single-file demo — copy and open in any browser.</footer>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const formCard = document.getElementById('formCard');
+    const thankCard = document.getElementById('thankCard');
+    const tyTitle = document.getElementById('tyTitle');
+    const tySub = document.getElementById('tySub');
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim() || 'Friend';
+      const email = document.getElementById('email').value.trim();
+
+      // simple validation
+      if(!email || !/.+@.+\..+/.test(email)){
+        alert('Please enter a valid email.');
+        return;
+      }
+
+      // replace form with thank you message
+      formCard.style.display = 'none';
+      tyTitle.textContent = `Thanks, ${name}!`;
+      tySub.textContent = `A confirmation has been sent to ${email}. We'll reach out about upcoming events and tips.`;
+
+      thankCard.classList.add('show');
+      thankCard.setAttribute('aria-hidden','false');
+
+      // tiny visual confetti burst (emoji)
+      burstConfetti();
+
+      // In a real site you would send `fetch()` to your server here.
+    });
+
+    document.getElementById('newSub').addEventListener('click', ()=>{
+      // reset
+      form.reset();
+      thankCard.classList.remove('show');
+      thankCard.setAttribute('aria-hidden','true');
+      formCard.style.display = '';
+    });
+
+    document.getElementById('demoBtn').addEventListener('click', ()=>{
+      document.getElementById('name').value = 'Rohan';
+      document.getElementById('age').value = '14';
+      document.getElementById('email').value = 'rohan@example.com';
+      document.getElementById('message').value = "Love attack-type combos!";
+      document.getElementById('interest').selectedIndex = 0;
+    });
+
+    function burstConfetti(){
+      const el = document.createElement('div');
+      el.style.position='fixed';
+      el.style.left='50%';
+      el.style.top='30%';
+      el.style.transform='translateX(-50%)';
+      el.style.fontSize='26px';
+      el.style.pointerEvents='none';
+      el.textContent = '🎉✨🎊';
+      document.body.appendChild(el);
+      setTimeout(()=>{el.style.transition='all 900ms ease';el.style.opacity='0';el.style.transform='
